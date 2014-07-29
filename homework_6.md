@@ -29,7 +29,13 @@ Now you can create a new output filename from the original filename:
 my $outfile = "${directories}${basename}_revcomp${suffix}";
 ```
 
-Create an output filename with `_revcomp` added to the basename using `fileparse`.
+To redirect this output to your working directory `output` you would write:
+
+```
+my $outfile = "output/${basename}_revcomp${suffix}";
+```
+
+Create an output filename with that begins with the directory `output/` and has `_revcomp` added to the basename using `fileparse`.
 
 **4)** Open your output file with write permissions ( using `>` instead of `<`)
 
@@ -41,17 +47,32 @@ Create an output filename with `_revcomp` added to the basename using `fileparse
 
 **Note: Remember to add a newline character back to the end of a sequence line**
 
+When you are done your script should run using the command:
+
+```
+scripts/rev_comp.pl /homes/sheltonj/solutions/mini.fasta
+```
+
+Upload your finished script to KSOL.
 
 ##Sample Dataset
 
 ```
->seq1
-AAAACCCnGT
+>seq_1
+TNNnActg
+>seq_2
+aatNNnAc
+CCCGgggt
+act
 ```
 
 ##Sample Output
 
 ```
->seq1
-ACnGGGTTTT
+>seq_1
+ANNnTgac
+>seq_2
+ttaNNnTg
+GGGCccca
+tga
 ```
