@@ -8,6 +8,8 @@ The reverse complement of a DNA string **s** is the string **s<sup>c</sup>** for
 
 ##For this assignment:
 
+Create and edit a file named `rev_comp.pl`.
+
 **1)** Create a hash where the keys are the uppercase nucleotide and lowercase nucleotides and the values are the corresponding upper or lowercase complements.
 
 **2)** open the fasta file passed as the first argument to your perl script for reading. Name the file `$file` when you read `$ARGV[0]`;
