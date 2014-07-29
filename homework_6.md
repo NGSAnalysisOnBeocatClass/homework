@@ -44,12 +44,12 @@ Create an output filename with `_revcomp` added to the basename using `fileparse
 
 ```
 >seq1
-AAAACCCGGT
+AAAACCCnGT
 ```
 
 ##Sample Output
 
 ```
->seq2
-ACCGGGTTTT
+>seq1
+ACnGGGTTTT
 ```
