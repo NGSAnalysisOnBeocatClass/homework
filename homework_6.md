@@ -1,16 +1,22 @@
 ##Homework 6
 
 This assignment was adapted from Rosalind http://rosalind.info/. Rosalind is a great training tool. It describes Python code but you can do each exercise in any language and then test it using their datasets.
-An RNA string is a string formed from the alphabet containing 'A', 'C', 'G', and 'U'.
 
-Given a DNA string t corresponding to a coding strand, its transcribed RNA string u is formed by replacing all occurrences of 'T' in t with 'U' in u.
+The 20 commonly occurring amino acids are abbreviated by using 20 letters from the English alphabet (all letters except for B, J, O, U, X, and Z). Protein strings are constructed from these 20 symbols. Henceforth, the term genetic string will incorporate protein strings along with DNA strings and RNA strings.
 
-Given: A DNA string t having length at most 1000 nt.
+The RNA codon table dictates the details regarding the encoding of specific codons into the amino acid alphabet.
 
-Return: The transcribed RNA string of t.
+Given: An RNA string s corresponding to a strand of mRNA (of length at most 10 kbp).
+
+Return: The protein string encoded by s.
+
 Sample Dataset
 
-GATGGAACTTGACTACGTAAATT
+```
+AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA
+```
 Sample Output
 
-GAUGGAACUUGACUACGUAAAUU
+```
+MAMAPRTEINSTRING
+```
