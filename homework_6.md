@@ -41,9 +41,11 @@ Create an output filename with that begins with the directory `output/` and has 
 
 **5)** While there are lines to read in your input fasta file: 
 
--for headers lines print them to the output file
+-for headers lines print the header to the output file. For sequences other than the first sequence also 
 
--for sequence lines reverse complement them using `split` for the sequence line then `reverse` on the array of bases and use your hash to take the current base as the key and print it's complement to the output file (if the base is ambiguous print it as-is without complementing)
+-for sequence lines concatenate them to the end of current contig
+
+reverse complement them using `split` for the sequence line then `reverse` on the array of bases and use your hash to take the current base as the key and print it's complement to the output file (if the base is ambiguous print it as-is without complementing)
 
 **Note: Remember to add a newline character back to the end of a sequence line**
 
@@ -58,21 +60,11 @@ Upload your finished script to KSOL.
 ##Sample Dataset
 
 ```
->seq_1
-TNNnActg
->seq_2
-aatNNnAc
-CCCGgggt
-act
+
 ```
 
 ##Sample Output
 
 ```
->seq_1
-ANNnTgac
->seq_2
-ttaNNnTg
-GGGCccca
-tga
+
 ```
