@@ -10,11 +10,33 @@ The reverse complement of a DNA string **s** is the string **s<sup>c</sup>** for
 
 Create and edit a file named `rev_comp.pl`.
 
-**1)** Create a hash where the keys are the uppercase nucleotide and lowercase nucleotides and the values are the corresponding upper or lowercase complements.
+####Step 1: Reverse complement subroutine
 
-**2)** open the fasta file passed as the first argument to your perl script for reading. Name the file `$file` when you read `$ARGV[0]`;
+Create a subroutine called `reverse_comp`.
 
-**3)** Parse the filename of the fasta file using the `fileparse` function from the Perl module `File::Basename`. `fileparse` is similar to `basename` in Bash. It takes a filename and an extension as arguments but it outputs an array with the basename, directory, and extension as array elements.
+Within the subroutine:
+
+Create a hash where the keys are the uppercase nucleotide and lowercase nucleotides and the values are the corresponding upper or lowercase complements. 
+
+The subroutine should take a string of DNA sequence as the argument `$_[0]`.
+
+Within the subroutine define `$_[0]` as `$contig`.
+
+-- Create a new variable called `$new_contig`.
+
+-- Reverse `$contig` and add its bases to an array using `split` then `reverse` to create an array of reversed bases called `@seq` 
+
+-- Loop through `@seq` using your hash to take the current base as the key and concatenate it's complement to `$new_contig` (if the base is ambiguous (not upper or lowercase A, C, G or T concatenate it as-is without complementing)
+
+When the loop is finished return `$new_contig`
+
+####Step 2: Open your input file
+
+Open the fasta file passed as the first argument to your perl script for reading. Name the file `$file` when you read `$ARGV[0]`;
+
+####Step 3: Create your output file
+
+Parse the filename of the fasta file using the `fileparse` function from the Perl module `File::Basename`. `fileparse` is similar to `basename` in Bash. It takes a filename and an extension as arguments but it outputs an array with the basename, directory, and extension as array elements.
 
 The following two lines can allow you to create variables from the parts of an input filename. This assumes you named `$ARGV[0]` `$file`. Otherwise change `$file` to the correct variable for your input filename. You can use these to create output filenames based on the input filename:
 
@@ -37,17 +59,23 @@ my $outfile = "output/${basename}_revcomp${suffix}";
 
 Create an output filename with that begins with the directory `output/` and has `_revcomp` added to the basename using `fileparse`.
 
-**4)** Open your output file with write permissions ( using `>` instead of `<`)
+####Step 4: Open your output file
 
-**5)** While there are lines to read in your input fasta file: 
+Open your output file with write permissions ( using `>` instead of `<`)
 
--for headers lines print the header to the output file. For sequences other than the first sequence also 
+####Step 5: Define a new variable
 
--for sequence lines concatenate them to the end of current contig
+Declare the variable `$current_contig` but do not define it
 
-reverse complement them using `split` for the sequence line then `reverse` on the array of bases and use your hash to take the current base as the key and print it's complement to the output file (if the base is ambiguous print it as-is without complementing)
+####Step 6: Parse your input file
 
-**Note: Remember to add a newline character back to the end of a sequence line**
+While there are lines to read in your input fasta file: 
+
+-- If a line is a header and `$current_contig` is defined (remember for the first line `$current_contig` is undefined for the first header) then run `&reverse_comp` with the argument `$current_contig`. Print the return from `&reverse_comp` and a new line character to the output file. Then print `$_`. Whether or not the header is the first print the header `$_` to the output file.
+
+-- If the line is not a header (i.e. it is sequence data) remove newline characters and concatinate the line to `$current_contig`
+
+-- If the line is the end of the file run `&reverse_comp` with the argument `$current_contig`. Print the return from `&reverse_comp` and a new line character to the output file.
 
 When you are done your script should run using the command:
 
@@ -57,14 +85,26 @@ scripts/rev_comp.pl /homes/sheltonj/solutions/mini.fasta
 
 Upload your finished script to KSOL.
 
-##Sample Dataset
+##Contents of /homes/sheltonj/solutions/mini.fasta
 
 ```
-
+>seq_1
+TNNnActg
+>seq_2
+aatNNnAc
+CCCGgggt
+act
 ```
 
-##Sample Output
+##Correct contents of your output file
 
 ```
-
+>seq_1
+cagTnNNA
+>seq_2
+agtacccCGGGgTnNNattTNNnActg
 ```
+
+####An extra problem
+
+If you solved this problem and want more than you should try to wrap the sequence in your output fasta file for extra credit.
