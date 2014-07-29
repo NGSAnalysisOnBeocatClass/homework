@@ -26,7 +26,7 @@ my ($basename, $directories, $suffix) = fileparse($file,'\..*'); # break appart 
 Now you can create a new output filename from the original filename:
 
 ```
-my $outfile = "${directories}/${basename}_revcomp${suffix}";
+my $outfile = "${directories}${basename}_revcomp${suffix}";
 ```
 
 Create an output filename with `_revcomp` added to the basename using `fileparse`.
