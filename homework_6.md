@@ -41,7 +41,7 @@ Create an output filename with that begins with the directory `output/` and has 
 
 **5)** While there are lines to read in your input fasta file: 
 
--for headers lines print them to the output
+-for headers lines print them to the output file
 
 -for sequence lines reverse complement them using `split` for the sequence line then `reverse` on the array of bases and use your hash to take the current base as the key and print it's complement to the output file (if the base is ambiguous print it as-is without complementing)
 
