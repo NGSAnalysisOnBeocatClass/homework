@@ -18,13 +18,13 @@ Within the subroutine:
 
 Create a hash where the keys are the uppercase nucleotide and lowercase nucleotides and the values are the corresponding upper or lowercase complements. 
 
-The subroutine should take a string of DNA sequence as the argument `$_[0]`.
+The subroutine should take a string of DNA sequence as the argument `$_[0]`. Within the subroutine:
 
-Within the subroutine define `$_[0]` as `$contig`.
+-- Define `$contig` as `$_[0]`.
 
 -- Create a new variable called `$new_contig`.
 
--- Reverse `$contig` and add its bases to an array using `split` then `reverse` to create an array of reversed bases called `@seq` 
+-- Reverse `$contig` and add its bases to an array using the `split` then `reverse` functions in Perl to create an array of reversed bases called `@seq` (google "perl split" or "perl reverse array" or look again at your reading in the Perl text for a refresher)
 
 -- Loop through `@seq` using your hash to take the current base as the key and concatenate it's complement to `$new_contig` (if the base is ambiguous (not upper or lowercase A, C, G or T concatenate it as-is without complementing)
 
