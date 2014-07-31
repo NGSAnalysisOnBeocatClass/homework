@@ -102,7 +102,7 @@ act
 >seq_1
 cagTnNNA
 >seq_2
-agtacccCGGGgTnNNattTNNnActg
+agtacccCGGGgTnNNatt
 ```
 
 ####An extra problem
