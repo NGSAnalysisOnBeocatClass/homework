@@ -1,6 +1,6 @@
 #Perl Homework 1
 ##Problem 1A: Processing a FASTQ file
-Download the example fastq file: here
+Download the example fastq file in this directory: https://github.com/NGSAnalysisOnBeocatClass/homework/blob/master/SRR014849_1_short.fastq
 
 Fastq formatted files repeat every 4 lines. 
 ```
@@ -83,7 +83,20 @@ your_perl_script.pl > outfile.txt
 
 ##Problem 1B: Determine the average read length of your fastq file
 
-Make a new version of the fastq processing script from above. In your new version of the script, instead of printing the file in fasta format, instead let's examine the quality of this fastq file, by printing out useful information. For this excercise, let's print out the average sequence length, and the standard deviation of read length to get an idea of how many, if any, short or long reads are in the file. Use your assignment operators to do this, and output the average sequence length, and standard error of the mean. You can find out how to calculate the standard error of the mean here: https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_mean.
+Make a new version of the fastq processing script from above. In your new version of the script, instead of printing the file in fasta format, instead let's examine the quality of this fastq file, by printing out useful information. For this excercise, let's print out the average sequence length, and the standard deviation of read length to get an idea of how many, if any, short or long reads are in the file. Use your assignment operators to do this. 
+
+###Output the average sequence length, and standard error of the mean. 
+
+You can find out how to calculate the standard error of the mean here: https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_mean.
+
+Finally, one of the most common problems you will face is fastq files that have issues with data quality, or corruption. The following fastq file has problems with it. 
+https://github.com/NGSAnalysisOnBeocatClass/homework/blob/master/SRR014849_quality_issues.fastq
+
+###Filter out the reads that are short, or are missing quality information (e.g. quality is shorter than the sequence). Bonus if you can output reads separatrely into a "keeper file" and a separate "problem reads" file.
+
+In addition, there are some very long reads in the file, bonus if you can identify them and print them to their own file.
+
+
 
 
 
