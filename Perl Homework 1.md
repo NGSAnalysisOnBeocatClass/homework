@@ -16,11 +16,11 @@ http://support.illumina.com/help/SequencingAnalysisWorkflow/Content/Vault/Inform
 
 The second line is the actual sequence read off of the machine.
 
-The third line will have a '+' sign. It is not used at the moment
+The third line will have a '+' sign. It is not used at the moment, so ignore it, but the '+' does need to be present for most fastq files to validate.
 
-The fourth line is an sequence of characters that represents the quality of each base of the sequence on line 2.
+The fourth line is an sequence of characters that represents the quality of each base of the sequence on line 2. The illumina tech support document describes this in detail.
 
-Fasta files, while names similarly, in practice are much different than fastq files. Moreover, the format of Fasta files varies considerably. For the moment, you should generate an unjustified fasta file. The first line is the sequence identifier starting with a '>' character, and the next line is the sequence itself. Thus, the above Fastq sequence is as follows in fasta format. NOTE! the '@' character has been substititued for the '>'.
+Fasta files, while named similarly, in practice are much different than fastq files. Moreover, the format of Fasta files varies considerably. For the moment, you should generate an unjustified fasta file. The first line is the sequence identifier starting with a '>' character, and the next line is the sequence itself. Thus, the above Fastq sequence is as follows in fasta format. NOTE! the '@' character has been substititued for the '>'.
 ```
 >SRR014849.2 EIXKN4201AKDUH/2
 TCAAGTGGTGAACGGCAGAAA
@@ -76,9 +76,14 @@ if (s/^@/>/)
 Use this, with your knowledge of fastq format files, to print out the headers of the Fastq file in fasta format.
 
 ###Finally, add code to print out the sequence on the next line below the header.
-Don't forget how newlines are handled, as well as the difference between print and say.
+Don't forget how newlines are handled, as well as the difference between print and say. Use this to make a fasta file from the fastq file. Don't forget that you can use the unix command line promt to redirect the output of your script with ethe following unix command
+```unix
+your_perl_script.pl > outfile.txt
+```
 
-##Problem 1: 
+##Problem 1B: Determine the average read length of your fastq file
+
+Make a new version of the fastq processing script from above. In your new version of the script, instead of printing the file in fasta format, instead let's examine the quality of this fastq file, by printing out useful information. For this excercise, let's print out the average sequence length, and the standard deviation of read length to get an idea of how many, if any, short or long reads are in the file. Use your assignment operators to do this, and output the average sequence length, and standard error of the mean. You can find out how to calculate the standard error of the mean here: https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_mean.
 
 
 
