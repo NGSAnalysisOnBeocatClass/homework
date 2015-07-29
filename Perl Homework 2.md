@@ -70,6 +70,8 @@ Once you get this going, lets do some advanced calculations.
 
 As a reminder, if you try and do this on the full genome data you will be waiting forever to get your software running. You will need to check the math of your work in your test files as well. For problem 2D, you will need to make a test GFF3 file for all of chromosome_1.
 
+You will need to get these scripts running because on Monday, you will build on these scripts to use hashes to export CDS and gene sequences. Thus, make sure you are compartmentalizing code in sub routines whenever possible. Use arrays to store data for GFF3 file for easy acceess. Also do not forget your assignment operators such as '+=' and '.+'.
+
 
 
 
