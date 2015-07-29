@@ -6,7 +6,7 @@ A description of the format can be found here:
 
 http://www.sequenceontology.org/gff3.shtml
 
-A simple GFF3 format file for Chlamydomonas looks like this
+A simple GFF3 format file for Chlamydomonas (for the first gene on chromosome_1) looks like this
 
 ```GFF3
 ##gff-version 3
