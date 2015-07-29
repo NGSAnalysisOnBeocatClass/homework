@@ -37,7 +37,13 @@ head -n 10000 file.txt
 
 So you can use the head command to make a subset of your data to run on your scripts as a test. 
 
-If a file is zipped, you can pipe the command 'gunzip' to head. By using 'gunzip -c' this will unzip the zipped file, while preserving the original file. As disk space is always at a premium, it is a good idea to keep your source files zipped, and even read only so you don't screw them up (and make backups!!!).
+If a file is zipped, you can pipe the command 'gunzip' to head. By using 'gunzip -c' this will unzip the zipped file, while preserving the original file. As disk space is always at a premium, it is a good idea to keep your source files zipped, and even read only so you don't screw them up (and make backups!!!). In this case, you could make test files as follows...
+
+```unix
+gunzip -c file.gz | head -n 10000 > file.txt
+```
+
+This will unzip file.gz in memory, send this unzipped data via a pipeline to the command head, that will output the first 10,000 lines into the file file.txt. Note that this command will overwrite any data in file.txt without warning, so make sure you are careful with your data files. As mentioned above, making source data files read only is a very good practice, and keeping off machine backups is also a good idea. It only take a small coding bug to wipe out the contents of a data file.
 
 In other cases, such as a GFF3 file, you want to make sure that your data, which is on multiple, but variable numbers of lines, is a complete set of GFF3 lines. In this case, often you will have to make a custom perl script to building testing file, before you even start coding your actual analysis script.
 
