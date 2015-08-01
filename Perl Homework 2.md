@@ -66,6 +66,60 @@ Download the Chlamydomonas genome, and corresponding GFF3 files from KSOL.
 
 Using your test files for debugging, build a perl script that can tell you some useful things about the Chlamydomonas genome. When your scripts work with your test files, run them on the entire Chlamydomonas genome.
 
+In order to deal with tab separated data in perl, you want to use one the 'split' function. Here is a really complete tutorial, http://www.perlmonks.org/?node_id=591988, however, for the moment you can do a lot with split without knowing much about regular expressions. Split uses the syntax of..
+```perl
+my @array=split(/\t/, $some_string);
+```
+The split funciton takes a regular expression, in this case delimited with / and /, and splits a sclar into elements of an array everytime the regular expression matches in the scalars. In the code above, split will break up $some_string into array elements every time there is a tab and assign all those elements sequentially into the array @array. Thus, you can take in a line from a file, split it up into array element without having to know anything about the length of the data.
+
+NOTE!! It is possible to introduce bugs into your script if you forget to chomp the incoming line, especially if you expect numbers to be the last element of the incoming line and try and do calculations on those number.
+
+For future reference, split can also work to split strings up into arrays of the individual characters in the string. This comes in handy when you want to process DNA or RNA sequence data and want to do fast comparisons on a base-by-base basis. In fact, using just a little bit of code, splitting a string into characters into an array is a very fast way to identify SNPs in a data set compared to a reference. It is also a fast way to reduce your comparison to just the differences between two string values. This is very handy when you have genome sized DNA fragments and only want to look at the differences between two sequences. Here is an example.
+```perl
+#!/usr/bin/perl
+use strict;
+use warnings;
+use 5.010;
+
+#Two test DNA sequences
+my $dna1='ATCG';
+my $dna2='AACG';
+
+#Now turn sequences into arrays
+#Split based on a null string delimited with // as a regular expression
+my @dna_array1=split(//, $dna1);
+my @dna_array2=split(//, $dna2);
+
+#Let's start by printing a header
+say "Here are the differences between the sequences";
+say "DNA1\tDNA2\tPosition";
+
+#First lets ensure that the DNA sequences are the same length
+#This is a god sanity check before processing lots of data
+#Especially since the for loop below processes the arrays in parallel
+if(scalar(@dna_array1) == scalar(@dna_array2))
+{
+  #If the lengths are the same look for SNPs
+  for (my $i=0; $i<=$#dna_array1; $i++)
+  {
+    #Now we are going to test if the element in each position of the two arrays is the same
+    #Note that we are comparing string data, so we use ne
+    #When you learn about hashes, you could store all this data in a hash for later processing
+    if($dna_array1[$i] ne $dna_array2[$i])
+    {
+      say "$dna_array1[$i]\t$dna_array2[$i]\t$i"; 
+    }
+  }
+}
+else #If the sequences are unequal in length
+{
+  say "The DNA sequences are different lengths!";
+}
+```
+
+
+
+
 ###2C: Build a acript that outputs the following data about the Chlamydomonas genome. 1) Number of genes, 2) Average length of a gene. 3) Number of genes on the '+' strand, and on the '-' strand, 4) Number of geens on chromosomes, versus scaffolds, 5) Average number of genes per chromosome.
 
 ###2D: Now add onto your script to process the chlamydomonas fasta genome file to calculate gene density. You will probably want to use subroutines!
