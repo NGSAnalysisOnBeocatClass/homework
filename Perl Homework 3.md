@@ -51,6 +51,31 @@ Ok, that seemed easy, but was a lot of work right?
 
 ###Problem 2B: Now modify the above code to extract the CDS of a feature on the '-' strand, and print out its translation. Be very careful for the fact that perl counts by 'zero'!!
 
+##Problem 3: Complex data structures introduction
+
+For this, again we are goig to start the process of learning to advance our perl knowledge on our own. Work through as much of this as you can, this will get us moving toward our final project
+
+Read this article from "Programming Perl", the perl book that comes after "Learning Perl".
+
+http://archive.oreilly.com/pub/a/perl/excerpts/9780596000271/data-structures.html
+
+It is an old version, but has everything we need. Work through the code examples in the article.
+
+###Using a hash-of-hash of array to process a single GFF3 entry and hash up all the sub-parts of a gene.
+
+Your complex data structure should look like this:
+
+```perl
+geneID  => CDS =>   (gff_line1, gff_line2...)
+          five_prime_utr  =>  gff_line
+          three_prime_utr =>  gff_line
+          ...
+```
+For every gene you will have a key in a hash, its values will be the GFF parts (CDS, gene, utr etc.). For those parts that that have a single entry (e.g. utr), just store the line from the gff file as a scalar value of the value - a hash-of-hash.
+
+CDS entries are more difficult. Here the value CDS will be used as a key that points to an array of all the gff_lines, not a scalar.
+
+
 
 
 
